@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import TaskList from './components/TaskList';
 import AddTaskDialog from './components/AddTaskDialog';
@@ -124,6 +123,8 @@ function App() {
       )}
     </div>
   );
+
+
 }
 
 export default App;

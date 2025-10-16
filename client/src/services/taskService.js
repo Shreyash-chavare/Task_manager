@@ -1,4 +1,5 @@
-const API_BASE_URL = import.meta.env.VITE_API_URI;
+const API_BASE_URL = import.meta.env.VITE_API_URI || '/api/tasks';
+console.log('API_BASE_URL:', API_BASE_URL);
 
 class TaskService {
   async getAllTasks() {
@@ -13,18 +14,16 @@ class TaskService {
 
   async createTask(taskData) {
     const response = await fetch(API_BASE_URL, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(taskData),
     });
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      throw new Error(
-        errorData.message || `HTTP error! status: ${response.status}`
-      );
+      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
     }
 
     return await response.json();
@@ -32,14 +31,12 @@ class TaskService {
 
   async deleteTask(taskId) {
     const response = await fetch(`${API_BASE_URL}/${taskId}`, {
-      method: "DELETE",
+      method: 'DELETE',
     });
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      throw new Error(
-        errorData.message || `HTTP error! status: ${response.status}`
-      );
+      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
     }
 
     return await response.json();
