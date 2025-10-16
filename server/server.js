@@ -33,8 +33,7 @@ app.use((err, req, res, next) => {
 app.use('*', (req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
-// test.js
-let foo
+
 
 // Database connection
 connect(process.env.MONGO_URI, {
