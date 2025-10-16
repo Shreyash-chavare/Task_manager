@@ -36,7 +36,7 @@ app.use('*', (req, res) => {
 
 // Database connection
 mongoose
-  .connect(`mongodb://localhost:27017/myDatabase`, {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
