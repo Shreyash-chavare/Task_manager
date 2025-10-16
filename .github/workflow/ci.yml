@@ -14,12 +14,31 @@ name: build-and-lint
          uses: actions/setup-node@v3
          with:
           node-version: 22
+      
+       - name: Cache backend node_modules
+         uses: actions/cache@v3
+         with:
+         path: ~/.npm
+         key: ${{ runner.os }}-node-${{ hashFiles('server/package-lock.json') }}
+         restore-keys: |
+           ${{ runner.os }}-node-
+
        - name: Install backend deps
          working-directory: server
          run: npm ci
        - name: Lint backend
          working-directory: server
          run: npm run lint -- --max-warnings=0
+
+       - name: Cache frontend node_modules
+         uses: actions/cache@v3
+         with:
+         path: ~/.npm
+         key: ${{ runner.os }}-node-${{ hashFiles('client/package-lock.json') }}
+         restore-keys: |
+           ${{ runner.os }}-node-
+
+
        - name: Install frontend deps
          working-directory: client
          run: npm ci
