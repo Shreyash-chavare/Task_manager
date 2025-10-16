@@ -21,7 +21,7 @@ jobs:
            path: ~/.npm
            key: ${{ runner.os }}-node-${{ hashFiles('server/package-lock.json') }}
            restore-keys: |
-           ${{ runner.os }}-node-
+             ${{ runner.os }}-node-
 
        - name: Install backend deps
          working-directory: server
@@ -36,7 +36,7 @@ jobs:
            path: ~/.npm
            key: ${{ runner.os }}-node-${{ hashFiles('client/package-lock.json') }}
            restore-keys: |
-           ${{ runner.os }}-node-
+             ${{ runner.os }}-node-
 
 
        - name: Install frontend deps
